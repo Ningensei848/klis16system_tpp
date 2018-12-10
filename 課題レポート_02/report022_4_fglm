@@ -1,0 +1,27 @@
+%----------------------------------------------------------------------;
+% Groebner Basis Computation (FGLM algorithm)
+%----------------------------------------------------------------------;
+% Katsura 4
+
+load_package groebner;
+
+p1:=2*u4**2+2*u3**2+2*u2**2+2*u1**2+u0**2-u0$
+p2:=2*u4*u3+2*u3*u2+2*u2*u1+2*u1*u0-u1$
+p3:=2*u4*u2+2*u3*u1+2*u2*u0-u2+u1**2$
+p4:=2*u4*u1+2*u3*u0-u3+2*u2*u1$
+p5:=2*u4+2*u3+2*u2+2*u1+u0-1$
+
+% Groebner Basis Computation with `revgradlex + FGLM` -----------------;
+
+torder({u4, u3, u2, u1, u0}, revgradlex)$
+gr_katsura4:=groebner({p1, p2, p3, p4, p5});
+glexconvert(gr_katsura4, {u4, u3, u2, u1, u0});
+
+%----------------------------------------------------------------------;
+% Record execution time
+showtime;
+
+% Elapsed time => 20 (ms)
+
+%----------------------------------------------------------------------;
+;end;

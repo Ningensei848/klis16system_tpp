@@ -1,0 +1,293 @@
+%-----------------------------------------------------------------------
+% Groebner Bassis Computation (in detail + loop count mutual reduction)
+%-----------------------------------------------------------------------
+
+load_package groebner$
+torder({x, y, z}, lex)$
+
+f1:=x^2+y*z-2;
+f2:=y^2+x*z-3;
+f3:=x*y+z^2-5;
+
+
+%-----------------------------------------------------------------------
+%% step (ii)-1 G={f1, f2, f3}
+
+s12:=gspoly(f1, f2);
+f4:=preduce(s12, {f1, f2, f3});
+
+%-----------------------------------------------------------------------
+%%% add new func(f4) to G_group
+%%% G={f1, f2, f3, f4}
+s13:=gspoly(f1, f3);
+f5:=preduce(s13, {f1, f2, f3, f4});
+
+%-----------------------------------------------------------------------
+%%% add new func(f5) to G_group
+%%% G={f1, f2, f3, f4, f5}
+
+s23:=gspoly(f2, f3);
+f6:=preduce(s23, {f1, f2, f3, f4, f5});
+
+%-----------------------------------------------------------------------
+%%% add new func(f6) to G_group
+%%% G={f1, f2, f3, f4, f5, f6}
+
+
+%-----------------------------------------------------------------------
+%% step (ii)-2 G={f1, f2, f3, f4, f5, f6}
+
+s14:=gspoly(f1, f4);
+f7:=preduce(s14, {f1, f2, f3, f4, f5, f6});
+
+%-----------------------------------------------------------------------
+%%% add new func(f7) to G_group
+%%% G={f1, f2, f3, f4, f5, f6, f7}
+
+s15:=gspoly(f1, f5);
+preduce(s15, {f1, f2, f3, f4, f5, f6, f7});
+s16:=gspoly(f1, f6);
+f8:=preduce(s16, {f1, f2, f3, f4, f5, f6, f7});
+
+%-----------------------------------------------------------------------
+%%% add new func(f8) to G_group
+%%% G={f1, f2, f3, f4, f5, f6, f7, f8}
+
+s24:=gspoly(f2, f4);
+preduce(s24, {f1, f2, f3, f4, f5, f6, f7, f8});
+s25:=gspoly(f2, f5);
+preduce(s25, {f1, f2, f3, f4, f5, f6, f7, f8});
+s26:=gspoly(f2, f6);
+preduce(s26, {f1, f2, f3, f4, f5, f6, f7, f8});
+s34:=gspoly(f3, f4);
+preduce(s34, {f1, f2, f3, f4, f5, f6, f7, f8});
+s35:=gspoly(f3, f5);
+preduce(s35, {f1, f2, f3, f4, f5, f6, f7, f8});
+s36:=gspoly(f3, f6);
+preduce(s36, {f1, f2, f3, f4, f5, f6, f7, f8});
+s45:=gspoly(f4, f5);
+f9:=preduce(s45, {f1, f2, f3, f4, f5, f6, f7, f8});
+
+%-----------------------------------------------------------------------
+%%% add new func(f9) to G_group
+%%% G={f1, f2, f3, f4, f5, f6, f7, f8, f9}
+
+s46:=gspoly(f4, f6);
+preduce(s46, {f1, f2, f3, f4, f5, f6, f7, f8, f9});
+s56:=gspoly(f5, f6);
+preduce(s56, {f1, f2, f3, f4, f5, f6, f7, f8, f9});
+
+
+%-----------------------------------------------------------------------
+%% step (ii)-3 G={f1, f2, f3, f4, f5, f6, f7, f8, f9}
+
+s17:=gspoly(f1, f7);
+preduce(s17, {f1, f2, f3, f4, f5, f6, f7, f8, f9});
+s18:=gspoly(f1, f8);
+f10:=preduce(s18, {f1, f2, f3, f4, f5, f6, f7, f8, f9});
+
+%-----------------------------------------------------------------------
+%%% add new func(f10) to G_group
+%%% G={f1, f2, f3, f4, f5, f6, f7, f8, f9, f10}
+
+s19:=gspoly(f1, f9);
+preduce(s19, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10});
+s27:=gspoly(f2, f7);
+preduce(s27, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10});
+s28:=gspoly(f2, f8);
+preduce(s28, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10});
+s29:=gspoly(f2, f9);
+preduce(s29, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10});
+s37:=gspoly(f3, f7);
+preduce(s37, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10});
+s38:=gspoly(f3, f8);
+f11:=preduce(s38, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10});
+
+%-----------------------------------------------------------------------
+%%% add new func(f11) to G_group
+%%% G={f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11}
+
+s39:=gspoly(f3, f9);
+preduce(s39, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11});
+s47:=gspoly(f4, f7);
+preduce(s47, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11});
+s48:=gspoly(f4, f8);
+preduce(s48, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11});
+s49:=gspoly(f4, f9);
+preduce(s49, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11});
+s57:=gspoly(f5, f7);
+preduce(s57, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11});
+s58:=gspoly(f5, f8);
+preduce(s58, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11});
+s59:=gspoly(f5, f9);
+preduce(s59, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11});
+s67:=gspoly(f6, f7);
+preduce(s67, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11});
+s68:=gspoly(f6, f8);
+f12:=preduce(s68, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11});
+
+%-----------------------------------------------------------------------
+%%% add new func(f12) to G_group
+%%% G={f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12}
+
+s69:=gspoly(f6, f9);
+preduce(s69, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s78:=gspoly(f7, f8);
+preduce(s78, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s79:=gspoly(f7, f9);
+preduce(s79, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s89:=gspoly(f8, f9);
+preduce(s89, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+
+
+%-----------------------------------------------------------------------
+%% step (ii)-4 G={f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12}
+
+s110:=gspoly(f1, f10);
+preduce(s110, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s111:=gspoly(f1, f11);
+preduce(s111, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s112:=gspoly(f1, f12);
+preduce(s112, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s210:=gspoly(f2, f10);
+preduce(s210, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s211:=gspoly(f2, f11);
+preduce(s211, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s212:=gspoly(f2, f12);
+preduce(s212, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s310:=gspoly(f3, f10);
+preduce(s310, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s311:=gspoly(f3, f11);
+preduce(s311, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s312:=gspoly(f3, f12);
+preduce(s312, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s410:=gspoly(f4, f10);
+preduce(s410, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s411:=gspoly(f4, f11);
+preduce(s411, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s412:=gspoly(f4, f12);
+preduce(s412, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s510:=gspoly(f5, f10);
+preduce(s510, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s511:=gspoly(f5, f11);
+preduce(s511, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s512:=gspoly(f5, f12);
+preduce(s512, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s610:=gspoly(f6, f10);
+preduce(s610, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s611:=gspoly(f6, f11);
+preduce(s611, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s612:=gspoly(f6, f12);
+preduce(s612, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s710:=gspoly(f7, f10);
+preduce(s710, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s711:=gspoly(f7, f11);
+preduce(s711, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s712:=gspoly(f7, f12);
+preduce(s712, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s810:=gspoly(f8, f10);
+preduce(s810, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+s811:=gspoly(f8, f11);
+f13:=preduce(s811, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12});
+
+%-----------------------------------------------------------------------
+%%% add new func(f13) to G_group
+%%% G={f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13}
+
+s812:=gspoly(f8, f12);
+preduce(s812, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13});
+s910:=gspoly(f9, f10);
+preduce(s910, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13});
+s911:=gspoly(f9, f11);
+f14:=preduce(s911, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13});
+
+%-----------------------------------------------------------------------
+%%% add new func(f14) to G_group
+%%% G={f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14}
+
+s912:=gspoly(f9, f12);
+preduce(s912, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s1011:=gspoly(f10, f11);
+preduce(s1011, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s1012:=gspoly(f10, f12);
+preduce(s1012, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s1112:=gspoly(f11, f12);
+preduce(s1112, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+
+%-----------------------------------------------------------------------
+%% step (ii)-5 G={f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14}
+
+s113:=gspoly(f1, f13);
+preduce(s113, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s114:=gspoly(f1, f14);
+preduce(s114, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s213:=gspoly(f2, f13);
+preduce(s213, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s214:=gspoly(f2, f14);
+preduce(s214, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s313:=gspoly(f3, f13);
+preduce(s313, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s314:=gspoly(f3, f14);
+preduce(s314, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s413:=gspoly(f4, f13);
+preduce(s413, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s414:=gspoly(f4, f14);
+preduce(s414, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s513:=gspoly(f5, f13);
+preduce(s513, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s514:=gspoly(f5, f14);
+preduce(s514, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s613:=gspoly(f6, f13);
+preduce(s613, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s614:=gspoly(f6, f14);
+preduce(s614, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s713:=gspoly(f7, f13);
+preduce(s713, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s714:=gspoly(f7, f14);
+preduce(s714, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s813:=gspoly(f8, f13);
+preduce(s813, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s814:=gspoly(f8, f14);
+preduce(s814, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s913:=gspoly(f9, f13);
+preduce(s913, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s914:=gspoly(f9, f14);
+preduce(s914, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s1013:=gspoly(f10, f13);
+preduce(s1013, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s1014:=gspoly(f10, f14);
+preduce(s1014, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s1113:=gspoly(f11, f13);
+preduce(s1113, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s1114:=gspoly(f11, f14);
+preduce(s1114, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s1213:=gspoly(f12, f13);
+preduce(s1213, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s1214:=gspoly(f12, f14);
+preduce(s1214, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+s1314:=gspoly(f13, f14);
+preduce(s1314, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+
+% step (iii) terminates here.
+%-----------------------------------------------------------------------
+% mutual reduction
+
+preduce(f1, {f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+preduce(f2, {f1, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+preduce(f3, {f1, f2, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+preduce(f4, {f1, f2, f3, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+preduce(f5, {f1, f2, f3, f4, f6, f7, f8, f9, f10, f11, f12, f13, f14});
+preduce(f6, {f1, f2, f3, f4, f5, f7, f8, f9, f10, f11, f12, f13, f14});
+preduce(f7, {f1, f2, f3, f4, f5, f6, f8, f9, f10, f11, f12, f13, f14});
+preduce(f8, {f1, f2, f3, f4, f5, f6, f7, f9, f10, f11, f12, f13, f14});
+preduce(f9, {f1, f2, f3, f4, f5, f6, f7, f8, f10, f11, f12, f13, f14});
+preduce(f10, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f11, f12, f13, f14});
+preduce(f11, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f12, f13, f14});
+preduce(f12, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f13, f14});
+preduce(f13, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f14});
+preduce(f14, {f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13});
+
+% the reduced Groebner Basis should be {f4, f12, f14}
+%-----------------------------------------------------------------------
+showtime;
+;end;

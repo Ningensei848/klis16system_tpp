@@ -1,0 +1,523 @@
+%-----------------------------------------------------------------------
+% Groebner Bassis Computation (in detail + loop count mutual reduction)
+%-----------------------------------------------------------------------
+
+r01:=x^3*y+x*y+1;
+r02:=x^2*y^2-y^2+1;
+
+load_package groebner$
+torder({x, y}, lex)$
+
+%-----------------------------------------------------------------------
+% step (ii)-1 G={r01, r02}
+
+s12:=gspoly(r01, r02);
+r03:=preduce(s12, {r01, r02});
+
+%-----------------------------------------------------------------------
+% step(ii)-2 G={r01, r02, r03}
+
+s23:=gspoly(r02,r03);
+r04:=preduce(s23, {r01, r02, r03});
+
+s13:=gspoly(r01, r03);
+r05:=preduce(s13, {r01, r02, r03});
+
+%-----------------------------------------------------------------------
+% step(ii)-3 G={r01, r02, r03, r04, r05}
+
+s34:=gspoly(r03, r04);
+r06:=preduce(s34, {r01, r02, r03, r04, r05});
+
+s24:=gspoly(r02, r04);
+r07:=preduce(s24, {r01, r02, r03, r04, r05});
+
+s14:=gspoly(r01, r04);
+preduce(s14, {r01, r02, r03, r04, r05});
+
+s45:=gspoly(r04, r05);
+preduce(s45, {r01, r02, r03, r04, r05});
+
+s35:=gspoly(r03, r05);
+preduce(s35, {r01, r02, r03, r04, r05});
+
+s25:=gspoly(r02, r05);
+preduce(s25, {r01, r02, r03, r04, r05});
+
+s15:=gspoly(r01, r05);
+preduce(s25, {r01, r02, r03, r04, r05});
+
+%-----------------------------------------------------------------------
+% step(ii)-4 G={r01, r02, r03, r04, r05, r06, r07}
+
+s67:=gspoly(r06, r07);
+preduce(s67, {r01, r02, r03, r04, r05, r06, r07});
+
+s57:=gspoly(r05, r07);
+preduce(s57, {r01, r02, r03, r04, r05, r06, r07});
+
+s47:=gspoly(r04, r07);
+preduce(s47, {r01, r02, r03, r04, r05, r06, r07});
+
+s37:=gspoly(r03, r07);
+r08:=preduce(s37, {r01, r02, r03, r04, r05, r06, r07});
+
+s27:=gspoly(r02, r07);
+preduce(s27, {r01, r02, r03, r04, r05, r06, r07});
+
+s17:=gspoly(r01, r07);
+preduce(s17, {r01, r02, r03, r04, r05, r06, r07});
+
+s56:=gspoly(r05, r06);
+preduce(s56, {r01, r02, r03, r04, r05, r06, r07});
+
+s46:=gspoly(r04, r06);
+preduce(s46, {r01, r02, r03, r04, r05, r06, r07});
+
+s36:=gspoly(r03, r06);
+r09:=preduce(s36, {r01, r02, r03, r04, r05, r06, r07});
+
+s26:=gspoly(r02, r06);
+preduce(s26, {r01, r02, r03, r04, r05, r06, r07});
+
+s16:=gspoly(r01, r06);
+preduce(s16, {r01, r02, r03, r04, r05, r06, r07});
+
+%-----------------------------------------------------------------------
+% step(ii)-5 G={r01, r02, r03, r04, r05, r06, r07, r08, r09}
+
+s89:=gspoly(r08, r09);
+preduce(s89, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s79:=gspoly(r07, r09);
+r10:=preduce(s79, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s69:=gspoly(r06, r09);
+r11:=preduce(s69, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s59:=gspoly(r05, r09);
+preduce(s59, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s49:=gspoly(r04, r09);
+preduce(s49, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s39:=gspoly(r03, r09);
+r012:=preduce(s39, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s29:=gspoly(r02, r09);
+r13:=preduce(s29, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s19:=gspoly(r01, r09);
+r14:=preduce(s19, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+
+s78:=gspoly(r07, r08);
+r15:=preduce(s78, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s68:=gspoly(r06, r08);
+r16:=preduce(s68, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s58:=gspoly(r05, r08);
+preduce(s58, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s48:=gspoly(r04, r08);
+preduce(s48, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s38:=gspoly(r03, r06);
+preduce(s38, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s28:=gspoly(r02, r08);
+r17:=preduce(s28, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+s18:=gspoly(r01, r08);
+r18:=preduce(s18, {r01, r02, r03, r04, r05, r06, r07, r08, r09});
+
+%-----------------------------------------------------------------------
+% step(ii)-6 G={r01, r02, r03, r04, r05, r06, r07, r08, r09,
+%               r10, r11, r12, r13, r14, r15, r16, r17, r18}
+
+% about r18
+
+s1718:=gspoly(r17, r18);
+preduce(s1718, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1618:=gspoly(r16, r18);
+preduce(s1618, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1518:=gspoly(r15, r18);
+preduce(s1518, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1418:=gspoly(r14, r18);
+preduce(s1418, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1318:=gspoly(r13, r18);
+preduce(s1318, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1218:=gspoly(r12, r18);
+preduce(s1218, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1118:=gspoly(r11, r18);
+preduce(s1118, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1018:=gspoly(r10, r18);
+preduce(s1018, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0918:=gspoly(r09, r18);
+preduce(s0918, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0818:=gspoly(r08, r18);
+preduce(s0818, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0718:=gspoly(r07, r18);
+preduce(s0718, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0618:=gspoly(r06, r18);
+preduce(s0618, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0518:=gspoly(r05, r18);
+preduce(s0518, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0418:=gspoly(r04, r18);
+preduce(s0418, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0318:=gspoly(r03, r18);
+preduce(s0318, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0218:=gspoly(r02, r18);
+preduce(s0218, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0118:=gspoly(r01, r18);
+preduce(s0118, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+
+% about r17
+
+
+s1617:=gspoly(r16, r17);
+preduce(s1617, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1517:=gspoly(r15, r17);
+preduce(s1517, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1417:=gspoly(r14, r17);
+preduce(s1417, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1317:=gspoly(r13, r17);
+preduce(s1317, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1217:=gspoly(r12, r17);
+preduce(s1217, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1117:=gspoly(r11, r17);
+preduce(s1117, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1017:=gspoly(r10, r17);
+preduce(s1017, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0917:=gspoly(r09, r17);
+preduce(s0917, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0817:=gspoly(r08, r17);
+preduce(s0817, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0717:=gspoly(r07, r17);
+preduce(s0717, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0617:=gspoly(r06, r17);
+preduce(s0617, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0517:=gspoly(r05, r17);
+preduce(s0517, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0417:=gspoly(r04, r17);
+preduce(s0417, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0317:=gspoly(r03, r17);
+preduce(s0317, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0217:=gspoly(r02, r17);
+preduce(s0217, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0117:=gspoly(r01, r17);
+preduce(s0117, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+
+% about r16
+
+s1516:=gspoly(r15, r16);
+preduce(s1516, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1416:=gspoly(r14, r16);
+preduce(s1416, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1316:=gspoly(r13, r16);
+preduce(s1316, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1216:=gspoly(r12, r16);
+preduce(s1216, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1116:=gspoly(r11, r16);
+preduce(s1116, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1016:=gspoly(r10, r16);
+preduce(s1016, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0916:=gspoly(r09, r16);
+preduce(s0916, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0816:=gspoly(r08, r16);
+preduce(s0816, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0716:=gspoly(r07, r16);
+preduce(s0716, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0616:=gspoly(r06, r16);
+preduce(s0616, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0516:=gspoly(r05, r16);
+preduce(s0516, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0416:=gspoly(r04, r16);
+preduce(s0416, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0316:=gspoly(r03, r16);
+preduce(s0316, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0216:=gspoly(r02, r16);
+preduce(s0216, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0116:=gspoly(r01, r16);
+preduce(s0116, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+
+% about r15
+
+s1415:=gspoly(r14, r15);
+preduce(s1415, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1315:=gspoly(r13, r15);
+preduce(s1315, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1215:=gspoly(r12, r15);
+preduce(s1215, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1115:=gspoly(r11, r15);
+preduce(s1115, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1015:=gspoly(r10, r15);
+preduce(s1015, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0915:=gspoly(r09, r15);
+preduce(s0915, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0815:=gspoly(r08, r15);
+preduce(s0815, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0715:=gspoly(r07, r15);
+preduce(s0715, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0615:=gspoly(r06, r15);
+preduce(s0615, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0515:=gspoly(r05, r15);
+preduce(s0515, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0415:=gspoly(r04, r15);
+preduce(s0415, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0315:=gspoly(r03, r15);
+preduce(s0315, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0215:=gspoly(r02, r15);
+preduce(s0215, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0115:=gspoly(r01, r15);
+preduce(s0115, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+
+% about r14
+
+s1314:=gspoly(r13, r14);
+preduce(s1314, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1214:=gspoly(r12, r14);
+preduce(s1214, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1114:=gspoly(r11, r14);
+preduce(s1114, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1014:=gspoly(r10, r14);
+preduce(s1014, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0914:=gspoly(r09, r14);
+preduce(s0914, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0814:=gspoly(r08, r14);
+preduce(s0814, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0714:=gspoly(r07, r14);
+preduce(s0714, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0614:=gspoly(r06, r14);
+preduce(s0614, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0514:=gspoly(r05, r14);
+preduce(s0514, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0414:=gspoly(r04, r14);
+preduce(s0414, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0314:=gspoly(r03, r14);
+preduce(s0314, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0214:=gspoly(r02, r14);
+preduce(s0214, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0114:=gspoly(r01, r14);
+preduce(s0114, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+
+% about r13
+
+s1213:=gspoly(r12, r13);
+preduce(s1213, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1113:=gspoly(r11, r13);
+preduce(s1113, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1013:=gspoly(r10, r13);
+preduce(s1013, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0913:=gspoly(r09, r13);
+preduce(s0913, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0813:=gspoly(r08, r13);
+preduce(s0813, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0713:=gspoly(r07, r13);
+preduce(s0713, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0613:=gspoly(r06, r13);
+preduce(s0613, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0513:=gspoly(r05, r13);
+preduce(s0513, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0413:=gspoly(r04, r13);
+preduce(s0413, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0313:=gspoly(r03, r13);
+preduce(s0313, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0213:=gspoly(r02, r13);
+preduce(s0213, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0113:=gspoly(r01, r13);
+preduce(s0113, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+
+% about r12
+
+s1112:=gspoly(r11, r12);
+preduce(s1112, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s1012:=gspoly(r10, r12);
+preduce(s1012, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0912:=gspoly(r09, r12);
+preduce(s0912, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0812:=gspoly(r08, r12);
+preduce(s0812, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0712:=gspoly(r07, r12);
+preduce(s0712, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0612:=gspoly(r06, r12);
+preduce(s0612, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0512:=gspoly(r05, r12);
+preduce(s0512, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0412:=gspoly(r04, r12);
+preduce(s0412, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0312:=gspoly(r03, r12);
+preduce(s0312, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0212:=gspoly(r02, r12);
+preduce(s0212, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0112:=gspoly(r01, r12);
+preduce(s0112, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+
+% about r11
+
+s1011:=gspoly(r10, r11);
+preduce(s1011, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0911:=gspoly(r09, r11);
+preduce(s0911, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0811:=gspoly(r08, r11);
+preduce(s0811, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0711:=gspoly(r07, r11);
+preduce(s0711, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0611:=gspoly(r06, r11);
+preduce(s0611, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0511:=gspoly(r05, r11);
+preduce(s0511, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0411:=gspoly(r04, r11);
+preduce(s0411, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0311:=gspoly(r03, r11);
+preduce(s0311, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0211:=gspoly(r02, r11);
+preduce(s0211, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0111:=gspoly(r01, r11);
+preduce(s0111, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+
+% about r10
+
+s0910:=gspoly(r09, r10);
+preduce(s0910, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0810:=gspoly(r08, r10);
+preduce(s0810, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0710:=gspoly(r07, r10);
+preduce(s0710, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0610:=gspoly(r06, r10);
+preduce(s0610, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0510:=gspoly(r05, r10);
+preduce(s0510, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0410:=gspoly(r04, r10);
+preduce(s0410, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0310:=gspoly(r03, r10);
+preduce(s0310, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0210:=gspoly(r02, r10);
+preduce(s0210, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+s0110:=gspoly(r01, r10);
+preduce(s0110, {r01, r02, r03, r04, r05, r06, r07, r08, r09, r10, r11, r12, r13, r14, r15, r16, r17, r18});
+
+
+%-----------------------------------------------------------------------
+
+
+showtime;
+
+;end;

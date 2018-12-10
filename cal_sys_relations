@@ -1,0 +1,71 @@
+%----------------------------------------------------------------------;
+% Proving Geometry Theorems by Groebner Basis
+%----------------------------------------------------------------------;
+load_package groebner;
+on comp,gcd,ezgcd;
+off allfac,pwrds;
+%----------------------------------------------------------------------;
+% A,B and C are collinear.
+procedure collinear(a1,a2,b1,b2,c1,c2)$
+begin
+        scalar a;
+        a:=(a1-b1)*(b2-c2)-(a2-b2)*(b1-c1);
+        return a
+end$
+%-------------------------------------------------------------
+% AB and CD are parallel.
+procedure parallel(a1,a2,b1,b2,c1,c2,d1,d2)$
+begin
+ scalar b;
+ b:=(a1-b1)*(c2-d2)-(a2-b2)*(c1-d1);
+ return b
+end$
+%----------------------------------------------------------------------;
+% AB and CD cross vertically.
+procedure vertically(a1,a2,b1,b2,c1,c2,d1,d2)$
+begin
+ scalar c;
+ c:=(a1-b1)*(c1-d1)+(a2-b2)*(c2-d2);
+ return c
+end$
+%----------------------------------------------------------------------;
+% AB = CD
+procedure requal(a1,a2,b1,b2,c1,c2,d1,d2)$
+begin
+ scalar d;
+ d:=(a1-b1)^2+(a2-b2)^2-(c1-d1)^2-(c2-d2)^2;
+ return d
+end$
+%----------------------------------------------------------------------;
+% ∠ABC = ∠DEF
+procedure tangent(a1,a2,b1,b2,c1,c2,d1,d2,e1,e2,f1,f2)$
+begin
+        scalar k1,k2,k3,k4,m,n,m1,m2,n1,n2,p;
+
+        k1:=(a2-b2)/(a1-b1); % ABの傾き
+        k2:=(c2-b2)/(c1-b1); % BCの傾き
+        k3:=(d2-e2)/(d1-e1); % DEの傾き
+        k4:=(f2-e2)/(f1-e1); % EFの傾き
+
+% tan(ABC)　<<(k2-k1)/(1+k1*k2)>>
+        m1:=(k2-k1)*(a1-b1)*(c1-b1); % 分子
+        m2:=(1+k1*k2)*(a1-b1)*(c1-b1); % 分母
+
+% tan(DEF)  <<(k4-k3)/(1+k3*k4)>>
+        n1:=(k4-k3)*(d1-e1)*(f1-e1);
+        n2:=(1+k3*k4)*(d1-e1)*(f1-e1);
+
+        p:=m1*n2-m2*n1;
+        return p
+end$
+%----------------------------------------------------------------------;
+% B is the midpoint of A and C
+procedure midpoint(x,a1,a2,b1,b2,c1,c2)$
+begin
+        scalar f;
+        if x=1 then f:=2*b1-a1-c1
+                else f:=2*b2-a2-c2;
+        return f
+end$
+%----------------------------------------------------------------------;
+end$
